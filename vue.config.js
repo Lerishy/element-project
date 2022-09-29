@@ -11,6 +11,16 @@ module.exports = defineConfig({
     //是否自动开启浏览器
     open: true,
     //是否开启https
-    https: false
+    https: false,
+    //配置跨域
+    proxy:{
+      [process.env.VUE_APP_BASE_API] : {
+        target : process.env.VUE_APP_SERVICE_URL,
+        changeOrigin : true,
+        pathRewrite : {
+          ["^" + process.env.VUE_APP_BASE_API] : '',
+        }
+      }
+    },
   }
 })
